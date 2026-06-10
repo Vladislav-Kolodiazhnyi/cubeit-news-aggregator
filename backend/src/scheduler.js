@@ -14,10 +14,10 @@ const startScheduler = async () => {
         //     await runScraperPipeline();
         // });
 
-        // cron.schedule('*/2 * * * *', async () => {
-        //     console.log(`\n[Cron] Запуск AI-обробки: ${new Date().toLocaleTimeString()}`);
-        //     await processPendingNewsWithLLM();
-        // });
+        cron.schedule('*/2 * * * *', async () => {
+            console.log(`\n[Cron] Запуск AI-обробки: ${new Date().toLocaleTimeString()}`);
+            await processPendingNewsWithLLM();
+        });
 
         // await runScraperPipeline();
         // await processPendingNewsWithLLM();
