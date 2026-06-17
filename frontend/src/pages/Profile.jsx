@@ -30,7 +30,7 @@ export default function Profile() {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center min-h-[60vh]">
+      <div className="flex justify-center items-center min-h-[60vh] pt-28">
         <Loader2 className="animate-spin text-muted" size={32} />
       </div>
     );
@@ -38,7 +38,7 @@ export default function Profile() {
 
   if (isError || !user) {
     return (
-      <div className="flex justify-center items-center min-h-[60vh] text-red-500">
+      <div className="flex justify-center items-center min-h-[60vh] pt-28 text-red-500">
         Не вдалося завантажити дані профілю.
       </div>
     );
@@ -48,7 +48,7 @@ export default function Profile() {
   const savedArticles = user.savedNews || [];
 
   return (
-    <div className="py-8 animate-in fade-in duration-500 max-w-4xl mx-auto w-full">
+    <div className="max-w-5xl mx-auto w-full px-4 sm:px-6 pt-28 pb-16 animate-in fade-in duration-500 transition-none">
 
       <div className="flex items-center gap-6 mb-10 p-6 bg-fg/5 border border-border rounded-2xl">
         <div className="w-20 h-20 rounded-full bg-border flex items-center justify-center text-3xl font-bold text-fg shadow-inner overflow-hidden border border-border">
@@ -74,8 +74,9 @@ export default function Profile() {
       <div className="flex items-center gap-6 border-b border-border mb-8">
         <button
           onClick={() => handleTabChange('bookmarks')}
-          className={`pb-3 text-sm font-medium transition-colors relative flex items-center gap-2 ${activeTab === 'bookmarks' ? 'text-fg' : 'text-muted hover:text-fg'
-            }`}
+          className={`pb-3 text-sm font-medium transition-colors relative flex items-center gap-2 ${
+            activeTab === 'bookmarks' ? 'text-fg' : 'text-muted hover:text-fg'
+          }`}
         >
           <Bookmark size={16} />
           Закладки
@@ -86,8 +87,9 @@ export default function Profile() {
 
         <button
           onClick={() => handleTabChange('settings')}
-          className={`pb-3 text-sm font-medium transition-colors relative flex items-center gap-2 ${activeTab === 'settings' ? 'text-fg' : 'text-muted hover:text-fg'
-            }`}
+          className={`pb-3 text-sm font-medium transition-colors relative flex items-center gap-2 ${
+            activeTab === 'settings' ? 'text-fg' : 'text-muted hover:text-fg'
+          }`}
         >
           <Settings size={16} />
           Налаштування
@@ -98,14 +100,13 @@ export default function Profile() {
       </div>
 
       <div className="min-h-[400px]">
-
         {activeTab === 'bookmarks' && (
           <div>
             {savedArticles.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {savedArticles.map((article) => (
                   typeof article === 'object' ? (
-                    <NewsCard key={article._id || article.id} article={article} />
+                    <NewsCard key={article._id || article.id} article={article} maxTags={5} />
                   ) : null
                 ))}
               </div>

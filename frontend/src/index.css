@@ -6,6 +6,7 @@
   --color-muted: var(--muted);
   --color-border: var(--border);
   --color-glass: var(--glass);
+  --color-grid-line: var(--grid-color);
   
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
@@ -18,14 +19,16 @@
     --muted: #888888;
     --border: #eaeaea;
     --glass: rgba(255, 255, 255, 0.7);
+    --grid-color: rgba(0, 0, 0, 0.05);
   }
 
   .dark {
     --bg: #000000;
     --fg: #ffffff;
-    --muted: #a1a1aa; 
+    --muted: #a1a1aa;
     --border: #222222;
     --glass: rgba(0, 0, 0, 0.7);
+    --grid-color: rgba(255, 255, 255, 0.05);
   }
 
   body {
@@ -33,6 +36,6 @@
     color: var(--color-fg);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
-    transition: background-color 0.3s ease, color 0.3s ease; 
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 }

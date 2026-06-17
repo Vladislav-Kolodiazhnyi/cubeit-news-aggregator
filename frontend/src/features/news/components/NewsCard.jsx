@@ -7,7 +7,7 @@ import useAuthStore from '../../../store/useAuthStore';
 import CommentsDrawer from '../components/CommentsDrawer';
 import { useLikeNews, useSaveNews } from '../hooks';
 
-export default function NewsCard({ article }) {
+export default function NewsCard({ article, maxTags = 3 }) {
   const navigate = useNavigate();
   const { isAuthenticated, user, fetchProfile } = useAuthStore();
   const queryClient = useQueryClient();
@@ -120,7 +120,7 @@ export default function NewsCard({ article }) {
 
         {article.tags?.length > 0 && (
           <div className="flex flex-wrap gap-1.5 mb-4">
-            {article.tags.slice(0, 3).map((tag, idx) => (
+            {article.tags.slice(0, maxTags).map((tag, idx) => (
               <span key={idx} className="text-[10px] font-mono bg-fg/5 text-muted px-1.5 py-0.5 rounded">
                 #{tag}
               </span>

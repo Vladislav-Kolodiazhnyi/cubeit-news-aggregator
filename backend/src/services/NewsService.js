@@ -18,15 +18,18 @@ class NewsService {
         const limit = Math.min(50, parseInt(queryParams.limit) || 12);
         const skip = (page - 1) * limit;
 
-        const filter = { isActive: true };
+        const filter = {
+            isActive: true,
+            category: { $ne: null, $exists: true }
+        };
 
         if (queryParams.category && queryParams.category !== 'All') {
             const categoryDoc = await this.categoryRepository.findBySlug(queryParams.category);
-            
+
             if (categoryDoc) {
                 filter.category = categoryDoc._id;
             } else {
-                filter.category = '000000000000000000000000'; 
+                filter.category = '000000000000000000000000';
             }
         }
 
@@ -70,13 +73,13 @@ class NewsService {
 
     async getNewsById(id) {
         const news = await this.newsRepository.findById(id);
-        
+
         if (!news || !news.isActive) {
             const error = new Error('News not found');
             error.statusCode = 404;
             throw error;
         }
-        
+
         this.newsRepository.incrementViews(id).catch(err => console.error('Failed to increment views:', err));
 
         return new NewsResponseDTO(news);
@@ -84,7 +87,7 @@ class NewsService {
 
     async toggleLike(newsId, userId) {
         const news = await this.newsRepository.findById(newsId);
-        
+
         if (!news || !news.isActive) {
             const error = new Error('News not found');
             error.statusCode = 404;
@@ -101,7 +104,7 @@ class NewsService {
             return { isLiked: true };
         }
     }
-    
+
     async createNews(newsData) {
         return await this.newsRepository.create(newsData);
     }
@@ -128,7 +131,7 @@ class NewsService {
             this.commentRepository.deleteManyByNewsId(id),
             this.userRepository.removeNewsFromAllSaved(id)
         ]);
-        
+
         await this.newsRepository.delete(id);
 
         return { message: 'News and all related data successfully deleted' };

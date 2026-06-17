@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { Mail, Lock, User, Eye, EyeOff, Loader2, AlertCircle } from 'lucide-react';
 import useAuthStore from '../store/useAuthStore';
+import useThemeStore from '../store/useThemeStore';
 
 const InputField = ({ icon: Icon, type, name, placeholder, value, onChange, autoFocus }) => (
   <div className="relative group">
@@ -24,13 +25,15 @@ export default function Login() {
   const navigate = useNavigate();
   const location = useLocation();
   const { login, register, isLoading, error: authError } = useAuthStore();
+  const { theme } = useThemeStore();
 
   const [isLoginMode, setIsLoginMode] = useState(location.pathname === '/login');
-
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [formData, setFormData] = useState({ username: '', email: '', password: '', confirmPassword: '' });
   const [validationError, setValidationError] = useState('');
+
+  const logoSrc = theme === 'dark' ? '/logo-light.png' : '/logo-dark.png';
 
   useEffect(() => {
     setIsLoginMode(location.pathname === '/login');
@@ -76,9 +79,20 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center px-4">
-      <div className="w-full max-w-md p-8 bg-bg/80 backdrop-blur-xl border border-border rounded-2xl shadow-2xl relative overflow-hidden">
+    <div className="min-h-[85vh] flex items-center justify-center px-6 py-12 relative w-full">
 
+      <Link
+        to="/"
+        className="absolute top-6 left-6 z-10"
+      >
+        <img
+          src={logoSrc}
+          alt="CubeIT"
+          className="h-8 md:h-10 w-auto object-contain"
+        />
+      </Link>
+
+      <div className="w-full max-w-md p-8 bg-bg/80 backdrop-blur-xl border border-border rounded-2xl shadow-2xl relative overflow-hidden mt-8 md:mt-0">
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-industrial-accent to-transparent opacity-50" />
 
         <div className="text-center mb-8">
@@ -95,7 +109,6 @@ export default function Login() {
         )}
 
         <form onSubmit={handleSubmit} className="space-y-4">
-
           {!isLoginMode && (
             <InputField
               icon={User}

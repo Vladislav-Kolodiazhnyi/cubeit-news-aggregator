@@ -25,21 +25,22 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="sticky top-4 z-50 px-4 w-full flex justify-center">
-        <nav className="relative w-full max-w-4xl border border-border bg-bg/80 backdrop-blur-md rounded-2xl shadow-sm flex items-center justify-between px-4 h-14">
-
+      <div className="fixed top-4 left-0 z-50 w-full flex justify-center px-4 sm:px-6 pointer-events-none">
+        
+        <nav className="relative w-full max-w-[976px] border border-border bg-bg/80 backdrop-blur-md rounded-2xl shadow-sm flex items-center justify-between px-4 md:px-6 h-14 md:h-16 pointer-events-auto">
+          
           <div className="absolute -inset-px pointer-events-none overflow-hidden rounded-2xl">
             <ScrollProgress />
           </div>
 
           <div className="flex items-center gap-4">
-            <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+            <Link to="/" className="flex items-center gap-2 md:gap-2.5 hover:opacity-80 transition-opacity">
               <img
-                src={theme === 'dark' ? '/logo-dark.png' : '/logo-light.png'}
+                src={theme === 'dark' ? '/logo-light.png' : '/logo-dark.png'}
                 alt="CubeIT Logo"
-                className="h-6 w-auto object-contain"
+                className="h-7 md:h-9 w-auto object-contain"
               />
-              <span className="text-lg font-extrabold tracking-wide hidden sm:block">
+              <span className="text-lg md:text-2xl font-extrabold tracking-wide hidden sm:block">
                 Cube<span className="text-blue-500">I</span><span className="text-yellow-400">T</span>
               </span>
             </Link>
@@ -49,9 +50,9 @@ export default function Navbar() {
 
             <button
               onClick={() => setIsSearchOpen(true)}
-              className="hidden md:flex items-center gap-2 px-3 py-1.5 text-sm text-muted bg-fg/5 hover:bg-fg/10 border border-border rounded-lg transition-colors"
+              className="hidden md:flex items-center gap-2.5 px-4 py-2 text-sm text-muted bg-fg/5 hover:bg-fg/10 border border-border rounded-xl transition-colors"
             >
-              <Search size={16} />
+              <Search size={18} />
               <span>Пошук...</span>
               <kbd className="ml-4 px-1.5 py-0.5 bg-bg border border-border rounded font-mono text-[10px]">
                 Ctrl K
@@ -65,8 +66,16 @@ export default function Navbar() {
               <Search size={18} />
             </button>
 
-            <button onClick={toggleTheme} className="p-2 text-muted hover:text-fg transition-colors rounded-md">
-              {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
+            <button 
+              onClick={toggleTheme} 
+              className="p-2 md:p-2.5 text-muted hover:text-fg transition-colors rounded-xl"
+              aria-label="Переключити тему"
+            >
+              {theme === 'light' ? (
+                <Moon className="w-[18px] h-[18px] md:w-[20px] md:h-[20px]" />
+              ) : (
+                <Sun className="w-[18px] h-[18px] md:w-[20px] md:h-[20px]" />
+              )}
             </button>
 
             {isAuthenticated ? (
@@ -74,9 +83,16 @@ export default function Navbar() {
                 <UserDropdown />
               </div>
             ) : (
-              <div className="flex items-center gap-3 pl-3 border-l border-border">
-                <Link to="/login" className="text-sm font-medium text-muted hover:text-fg">Вхід</Link>
-                <Link to="/register" className="text-sm font-medium bg-fg text-bg px-4 py-1.5 rounded-xl hover:opacity-90 transition-opacity">Реєстрація</Link>
+              <div className="flex items-center gap-3 md:gap-4 pl-3 border-l border-border">
+                <Link to="/login" className="text-sm font-medium text-muted hover:text-fg">
+                  Вхід
+                </Link>
+                <Link 
+                  to="/register" 
+                  className="text-sm font-medium bg-fg text-bg px-4 py-1.5 md:px-4.5 md:py-2 rounded-xl hover:opacity-90 transition-opacity shadow-sm"
+                >
+                  Реєстрація
+                </Link>
               </div>
             )}
           </div>
