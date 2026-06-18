@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { 
-    getNews, 
-    getNewsById, 
-    toggleLike, 
+const {
+    getNews,
+    getNewsById,
+    toggleLike,
     toggleSave,
     createNews,
     updateNews,
@@ -11,9 +11,9 @@ const {
     getSources
 } = require('../controllers/newsController');
 
-const { protect, authorize } = require('../middlewares/authMiddleware');
+const { protect, authorize, optionalProtect } = require('../middlewares/authMiddleware');
 
-router.get('/', getNews);
+router.get('/', optionalProtect, getNews);
 router.get('/sources', getSources);
 router.get('/:id', getNewsById);
 

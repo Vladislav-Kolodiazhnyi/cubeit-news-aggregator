@@ -6,7 +6,7 @@ export const fetchAdminStats = async () => {
 };
 
 export const fetchAdminNews = async (page = 1, limit = 10) => {
-  const response = await api.get(`/news?page=${page}&limit=${limit}`);
+  const response = await api.get(`/news?page=${page}&limit=${limit}&isAdmin=true`);
   return response.data;
 };
 

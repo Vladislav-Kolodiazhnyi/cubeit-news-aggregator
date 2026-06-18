@@ -8,12 +8,22 @@ const newsService = new NewsService(newsRepository, categoryRepository, commentR
 
 /**
  * @route   GET /api/news
- * @desc    Отримати список новин
- * @access  Public
+ * @desc    Отримати список новин (враховуючи права доступу)
+ * @access  Public / Admin
  */
 const getNews = async (req, res, next) => {
     try {
-        const result = await newsService.getNewsList(req.query);
+        const queryParams = { ...req.query };
+
+        if (queryParams.isAdmin === 'true' || queryParams.isAdmin === true) {
+            const isUserAdmin = req.user && req.user.role === 'admin';
+
+            if (!isUserAdmin) {
+                queryParams.isAdmin = false;
+            }
+        }
+
+        const result = await newsService.getNewsList(queryParams);
 
         res.status(200).json({
             success: true,
@@ -54,7 +64,7 @@ const getNewsById = async (req, res, next) => {
 const toggleLike = async (req, res, next) => {
     try {
         const result = await newsService.toggleLike(req.params.id, req.user.id);
-        
+
         res.status(200).json({
             success: true,
             data: result
@@ -72,7 +82,7 @@ const toggleLike = async (req, res, next) => {
 const toggleSave = async (req, res, next) => {
     try {
         const result = await userRepository.toggleSavedNews(req.user.id, req.params.id);
-        
+
         res.status(200).json({
             success: true,
             data: { isSaved: result.isSaved }

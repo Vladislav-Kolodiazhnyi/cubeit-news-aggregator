@@ -18,10 +18,12 @@ class NewsService {
         const limit = Math.min(50, parseInt(queryParams.limit) || 12);
         const skip = (page - 1) * limit;
 
-        const filter = {
-            isActive: true,
-            category: { $ne: null, $exists: true }
-        };
+        const filter = {};
+
+        if (queryParams.isAdmin !== 'true' && queryParams.isAdmin !== true) {
+            filter.isActive = true;
+            filter.category = { $ne: null, $exists: true };
+        }
 
         if (queryParams.category && queryParams.category !== 'All') {
             const categoryDoc = await this.categoryRepository.findBySlug(queryParams.category);
