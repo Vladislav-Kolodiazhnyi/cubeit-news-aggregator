@@ -26,9 +26,9 @@ export default function Navbar() {
   return (
     <>
       <div className="fixed top-4 left-0 z-50 w-full flex justify-center px-4 sm:px-6 pointer-events-none">
-        
+
         <nav className="relative w-full max-w-[976px] border border-border bg-bg/80 backdrop-blur-md rounded-2xl shadow-sm flex items-center justify-between px-4 md:px-6 h-14 md:h-16 pointer-events-auto">
-          
+
           <div className="absolute -inset-px pointer-events-none overflow-hidden rounded-2xl">
             <ScrollProgress />
           </div>
@@ -50,7 +50,7 @@ export default function Navbar() {
 
             <button
               onClick={() => setIsSearchOpen(true)}
-              className="hidden md:flex items-center gap-2.5 px-4 py-2 text-sm text-muted bg-fg/5 hover:bg-fg/10 border border-border rounded-xl transition-colors"
+              className="cursor-pointer hidden md:flex items-center gap-2.5 px-4 py-2 text-sm text-muted bg-fg/5 hover:bg-fg/10 border border-border rounded-xl transition-colors"
             >
               <Search size={18} />
               <span>Пошук...</span>
@@ -61,14 +61,14 @@ export default function Navbar() {
 
             <button
               onClick={() => setIsSearchOpen(true)}
-              className="md:hidden p-2 text-muted hover:text-fg rounded-md transition-colors"
+              className="cursor-pointer md:hidden p-2 text-muted hover:text-fg rounded-md transition-colors"
             >
               <Search size={18} />
             </button>
 
-            <button 
-              onClick={toggleTheme} 
-              className="p-2 md:p-2.5 text-muted hover:text-fg transition-colors rounded-xl"
+            <button
+              onClick={toggleTheme}
+              className="cursor-pointer p-2 md:p-2.5 text-muted hover:text-fg transition-colors rounded-xl"
               aria-label="Переключити тему"
             >
               {theme === 'light' ? (
@@ -84,12 +84,12 @@ export default function Navbar() {
               </div>
             ) : (
               <div className="flex items-center gap-3 md:gap-4 pl-3 border-l border-border">
-                <Link to="/login" className="text-sm font-medium text-muted hover:text-fg">
+                <Link to="/login" className="cursor-pointer text-sm font-medium text-muted hover:text-fg">
                   Вхід
                 </Link>
-                <Link 
-                  to="/register" 
-                  className="text-sm font-medium bg-fg text-bg px-4 py-1.5 md:px-4.5 md:py-2 rounded-xl hover:opacity-90 transition-opacity shadow-sm"
+                <Link
+                  to="/register"
+                  className="cursor-pointer text-sm font-medium bg-fg text-bg px-4 py-1.5 md:px-4.5 md:py-2 rounded-xl hover:opacity-90 transition-opacity shadow-sm"
                 >
                   Реєстрація
                 </Link>

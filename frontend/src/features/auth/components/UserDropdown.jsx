@@ -35,7 +35,7 @@ export default function UserDropdown() {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-8 h-8 rounded-full bg-border flex items-center justify-center text-sm font-medium hover:ring-2 hover:ring-industrial-accent transition-all overflow-hidden border border-border"
+        className="cursor-pointer w-8 h-8 rounded-full bg-border flex items-center justify-center text-sm font-medium hover:ring-2 hover:ring-industrial-accent transition-all overflow-hidden border border-border"
       >
         {user.avatar ? (
           <img
@@ -60,7 +60,7 @@ export default function UserDropdown() {
             <Link
               to="/profile?tab=bookmarks"
               onClick={() => setIsOpen(false)}
-              className="flex items-center gap-2 px-3 py-2 text-sm text-muted hover:text-fg hover:bg-fg/5 rounded-lg transition-colors"
+              className="cursor-pointer flex items-center gap-2 px-3 py-2 text-sm text-muted hover:text-fg hover:bg-fg/5 rounded-lg transition-colors"
             >
               <Bookmark size={16} />
               Закладки
@@ -69,7 +69,7 @@ export default function UserDropdown() {
             <Link
               to="/profile?tab=settings"
               onClick={() => setIsOpen(false)}
-              className="flex items-center gap-2 px-3 py-2 text-sm text-muted hover:text-fg hover:bg-fg/5 rounded-lg transition-colors"
+              className="cursor-pointer flex items-center gap-2 px-3 py-2 text-sm text-muted hover:text-fg hover:bg-fg/5 rounded-lg transition-colors"
             >
               <Settings size={16} />
               Налаштування
@@ -79,7 +79,7 @@ export default function UserDropdown() {
               <Link
                 to="/admin"
                 onClick={() => setIsOpen(false)}
-                className="flex items-center gap-2 px-3 py-2 text-sm text-muted hover:text-fg hover:bg-fg/5 rounded-lg transition-colors"
+                className="cursor-pointer flex items-center gap-2 px-3 py-2 text-sm text-muted hover:text-fg hover:bg-fg/5 rounded-lg transition-colors"
               >
                 <Shield size={16} />
                 Панель адміністратора
@@ -90,7 +90,7 @@ export default function UserDropdown() {
           <div className="p-1.5 border-t border-border bg-fg/1">
             <button
               onClick={handleLogout}
-              className="w-full flex items-center gap-2 px-3 py-2 text-sm text-red-500 hover:bg-red-500/10 rounded-lg transition-colors font-medium"
+              className="cursor-pointer w-full flex items-center gap-2 px-3 py-2 text-sm text-red-500 hover:bg-red-500/10 rounded-lg transition-colors font-medium"
             >
               <LogOut size={16} />
               Вийти

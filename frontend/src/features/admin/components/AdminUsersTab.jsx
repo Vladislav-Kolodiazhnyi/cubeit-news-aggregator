@@ -70,11 +70,16 @@ export default function AdminUsersTab() {
             </thead>
             <tbody className="divide-y divide-border">
               {isLoading ? (
-                <tr><td colSpan="5" className="px-4 py-10 text-center"><Loader2 size={24} className="animate-spin text-muted mx-auto" /></td></tr>
+                <tr>
+                  <td colSpan="5" className="px-4 py-10 text-center">
+                    <Loader2 size={24} className="animate-spin text-muted mx-auto" />
+                  </td>
+                </tr>
               ) : users.length === 0 ? (
                 <tr>
                   <td colSpan="5" className="px-4 py-16 text-center text-muted">
-                    <Users size={32} className="mx-auto mb-3 opacity-20" /><p>Користувачів не знайдено.</p>
+                    <Users size={32} className="mx-auto mb-3 opacity-20" />
+                    <p>Користувачів не знайдено.</p>
                   </td>
                 </tr>
               ) : (
@@ -86,22 +91,53 @@ export default function AdminUsersTab() {
                       <td className="px-4 py-3">
                         <div className="flex items-center gap-3">
                           <div className="w-8 h-8 rounded-full bg-border shrink-0 flex items-center justify-center text-xs font-bold overflow-hidden">
-                            {u.avatar ? <img src={`${BASE_URL}${u.avatar}`} alt={u.username} className="w-full h-full object-cover" /> : u.username?.charAt(0).toUpperCase() || '?'}
+                            {u.avatar ? (
+                              <img src={`${BASE_URL}${u.avatar}`} alt={u.username} className="w-full h-full object-cover" />
+                            ) : (
+                              u.username?.charAt(0).toUpperCase() || '?'
+                            )}
                           </div>
                           <div className="font-medium text-fg flex items-center gap-2">
-                            {u.username} {currentUserIsMe && <span className="text-[10px] bg-industrial-accent/10 text-industrial-accent px-1.5 py-0.5 rounded font-bold uppercase tracking-wider">Ви</span>}
+                            {u.username}{' '}
+                            {currentUserIsMe && (
+                              <span className="text-[10px] bg-industrial-accent/10 text-industrial-accent px-1.5 py-0.5 rounded font-bold uppercase tracking-wider">
+                                Ви
+                              </span>
+                            )}
                           </div>
                         </div>
                       </td>
-                      <td className="px-4 py-3 text-muted flex items-center gap-1.5"><Mail size={14} className="opacity-50" />{u.email}</td>
+                      <td className="px-4 py-3 text-muted flex items-center gap-1.5">
+                        <Mail size={14} className="opacity-50" />
+                        {u.email}
+                      </td>
                       <td className="px-4 py-3">
-                        <button onClick={() => toggleRole(u)} disabled={currentUserIsMe} className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium transition-colors ${u.role === 'admin' ? 'bg-industrial-accent/10 text-industrial-accent hover:bg-industrial-accent/20' : 'bg-fg/10 text-muted hover:bg-fg/20'} ${currentUserIsMe ? 'cursor-not-allowed opacity-70' : ''}`}>
-                          {u.role === 'admin' ? <Shield size={12} /> : <ShieldOff size={12} />} {u.role === 'admin' ? 'Адмін' : 'Користувач'}
+                        <button
+                          onClick={() => toggleRole(u)}
+                          disabled={currentUserIsMe}
+                          className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium transition-colors ${u.role === 'admin'
+                            ? 'bg-industrial-accent/10 text-industrial-accent hover:bg-industrial-accent/20'
+                            : 'bg-fg/10 text-muted hover:bg-fg/20'
+                            } ${currentUserIsMe ? 'cursor-not-allowed opacity-70' : 'cursor-pointer'}`}
+                        >
+                          {u.role === 'admin' ? <Shield size={12} /> : <ShieldOff size={12} />}{' '}
+                          {u.role === 'admin' ? 'Адмін' : 'Користувач'}
                         </button>
                       </td>
-                      <td className="px-4 py-3 text-muted text-xs font-mono flex items-center gap-1.5"><Calendar size={14} className="opacity-50" />{new Date(u.createdAt).toLocaleDateString('uk-UA')}</td>
+                      <td className="px-4 py-3 text-muted text-xs font-mono flex items-center gap-1.5">
+                        <Calendar size={14} className="opacity-50" />
+                        {new Date(u.createdAt).toLocaleDateString('uk-UA')}
+                      </td>
                       <td className="px-4 py-3 text-right">
-                        {!currentUserIsMe && <button onClick={() => setUserToDelete(id)} className="p-1.5 text-muted hover:text-red-500 rounded transition-colors"><Trash2 size={16} /></button>}
+                        {!currentUserIsMe && (
+                          <button
+                            onClick={() => setUserToDelete(id)}
+                            className="cursor-pointer p-1.5 text-muted hover:text-red-500 rounded transition-colors"
+                            title="Видалити користувача"
+                          >
+                            <Trash2 size={16} />
+                          </button>
+                        )}
                       </td>
                     </tr>
                   );
@@ -125,13 +161,25 @@ export default function AdminUsersTab() {
         <div className="fixed inset-0 z-[110] flex items-center justify-center bg-bg/80 backdrop-blur-sm p-4 animate-in fade-in duration-200">
           <div className="bg-bg border border-border rounded-2xl shadow-2xl w-full max-w-[320px] overflow-hidden animate-in zoom-in-95 duration-200">
             <div className="p-6 text-center">
-              <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center mx-auto mb-4 text-red-500"><AlertTriangle size={24} /></div>
+              <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center mx-auto mb-4 text-red-500">
+                <AlertTriangle size={24} />
+              </div>
               <h3 className="text-lg font-bold mb-2">Видалити користувача?</h3>
               <p className="text-sm text-muted">Ця дія є незворотною. Усі дані, пов'язані з цим користувачем, будуть видалені.</p>
             </div>
             <div className="flex border-t border-border bg-fg/[0.02]">
-              <button onClick={() => setUserToDelete(null)} disabled={isDeleting} className="flex-1 py-3 text-sm font-medium text-fg hover:bg-fg/5 border-r border-border disabled:opacity-50">Скасувати</button>
-              <button onClick={executeDelete} disabled={isDeleting} className="flex-1 py-3 text-sm font-medium text-red-500 hover:bg-red-500/10 flex items-center justify-center gap-2 disabled:opacity-50">
+              <button
+                onClick={() => setUserToDelete(null)}
+                disabled={isDeleting}
+                className="cursor-pointer disabled:cursor-not-allowed flex-1 py-3 text-sm font-medium text-fg hover:bg-fg/5 border-r border-border disabled:opacity-50"
+              >
+                Скасувати
+              </button>
+              <button
+                onClick={executeDelete}
+                disabled={isDeleting}
+                className="cursor-pointer disabled:cursor-not-allowed flex-1 py-3 text-sm font-medium text-red-500 hover:bg-red-500/10 flex items-center justify-center gap-2 disabled:opacity-50"
+              >
                 {isDeleting ? <Loader2 size={16} className="animate-spin" /> : 'Видалити'}
               </button>
             </div>

@@ -134,7 +134,7 @@ export default function NewsCard({ article, maxTags = 3 }) {
           <div className="flex items-center gap-3">
             <button
               onClick={() => setIsCommentsOpen(true)}
-              className="flex items-center gap-1 text-muted hover:text-fg transition-colors"
+              className="cursor-pointer flex items-center gap-1 text-muted hover:text-fg transition-colors"
             >
               <MessageSquare size={16} />
               <span className="text-xs font-mono">{commentsCount}</span>
@@ -143,7 +143,7 @@ export default function NewsCard({ article, maxTags = 3 }) {
             <button
               onClick={handleLike}
               disabled={isLikePending}
-              className={`flex items-center gap-1 transition-colors ${isLiked ? 'text-red-500' : 'text-muted hover:text-red-500'
+              className={`cursor-pointer flex items-center gap-1 transition-colors ${isLiked ? 'text-red-500' : 'text-muted hover:text-red-500'
                 } ${isLikePending ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
               <Heart size={16} className={isLiked ? 'fill-current' : ''} />
@@ -153,10 +153,14 @@ export default function NewsCard({ article, maxTags = 3 }) {
             <button
               onClick={handleSave}
               disabled={isSavePending}
-              className={`transition-colors ${isSaved ? 'text-industrial-accent' : 'text-muted hover:text-industrial-accent'
+              className={`cursor-pointer transition-colors ${isSaved ? 'text-industrial-accent' : 'text-muted hover:text-industrial-accent'
                 } ${isSavePending ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
-              <Bookmark size={16} className={isSaved ? 'fill-current' : ''} />
+              <Bookmark
+                size={16}
+                className={`transition-all duration-300 ${isSaved ? 'fill-current' : 'hover:fill-current'
+                  }`}
+              />
             </button>
 
             <a href={article.sourceLink} target="_blank" rel="noopener noreferrer" className="text-muted hover:text-fg transition-colors ml-1">

@@ -31,11 +31,6 @@ export default function Admin() {
   if (!isAdmin) return null;
 
   return (
-    /* ОНОВЛЕНО ТУТ:
-       1. pt-28 — створює безпечну відстань під новим фіксованим навбаром висотою h-16.
-       2. pb-16 — залишає гарний відступ знизу сторінки замість видаленого футера.
-       3. px-4 md:px-0 — додає мобільні паддінги для красивого стискання на смартфонах.
-    */
     <div className="pt-28 pb-16 px-4 md:px-0 animate-in fade-in duration-500 max-w-6xl mx-auto flex flex-col md:flex-row gap-8 w-full">
 
       <aside className="w-full md:w-64 shrink-0">
@@ -46,36 +41,32 @@ export default function Admin() {
 
           <button
             onClick={() => handleTabChange('dashboard')}
-            className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
-              activeTab === 'dashboard' ? 'bg-fg text-bg shadow-md' : 'text-muted hover:text-fg hover:bg-fg/5'
-            }`}
+            className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'dashboard' ? 'bg-fg text-bg shadow-md cursor-default' : 'text-muted hover:text-fg hover:bg-fg/5 cursor-pointer'
+              }`}
           >
             <LayoutDashboard size={18} /> Огляд
           </button>
 
           <button
             onClick={() => handleTabChange('news')}
-            className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
-              activeTab === 'news' ? 'bg-fg text-bg shadow-md' : 'text-muted hover:text-fg hover:bg-fg/5'
-            }`}
+            className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'news' ? 'bg-fg text-bg shadow-md cursor-default' : 'text-muted hover:text-fg hover:bg-fg/5 cursor-pointer'
+              }`}
           >
             <Newspaper size={18} /> Новини
           </button>
 
           <button
             onClick={() => handleTabChange('categories')}
-            className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
-              activeTab === 'categories' ? 'bg-fg text-bg shadow-md' : 'text-muted hover:text-fg hover:bg-fg/5'
-            }`}
+            className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'categories' ? 'bg-fg text-bg shadow-md cursor-default' : 'text-muted hover:text-fg hover:bg-fg/5 cursor-pointer'
+              }`}
           >
             <FolderTree size={18} /> Категорії
           </button>
 
           <button
             onClick={() => handleTabChange('users')}
-            className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
-              activeTab === 'users' ? 'bg-fg text-bg shadow-md' : 'text-muted hover:text-fg hover:bg-fg/5'
-            }`}
+            className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === 'users' ? 'bg-fg text-bg shadow-md cursor-default' : 'text-muted hover:text-fg hover:bg-fg/5 cursor-pointer'
+              }`}
           >
             <Users size={18} /> Користувачі
           </button>

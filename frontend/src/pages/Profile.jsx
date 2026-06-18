@@ -51,7 +51,7 @@ export default function Profile() {
     <div className="max-w-5xl mx-auto w-full px-4 sm:px-6 pt-28 pb-16 animate-in fade-in duration-500 transition-none">
 
       <div className="flex items-center gap-6 mb-10 p-6 bg-fg/5 border border-border rounded-2xl">
-        <div className="w-20 h-20 rounded-full bg-border flex items-center justify-center text-3xl font-bold text-fg shadow-inner overflow-hidden border border-border">
+        <div className="w-20 h-20 rounded-full bg-border flex items-center justify-center text-3xl font-bold text-fg shadow-inner overflow-hidden border border-border select-none">
           {user.avatar ? (
             <img src={`${BASE_URL}${user.avatar}`} alt="Аватар" className="w-full h-full object-cover" />
           ) : (
@@ -64,7 +64,7 @@ export default function Profile() {
         </div>
         <button
           onClick={logout}
-          className="flex items-center gap-2 px-4 py-2 text-sm text-red-500 hover:bg-red-500/10 border border-transparent hover:border-red-500/20 rounded-lg transition-colors"
+          className="cursor-pointer flex items-center gap-2 px-4 py-2 text-sm text-red-500 hover:bg-red-500/10 border border-transparent hover:border-red-500/20 rounded-lg transition-colors"
         >
           <LogOut size={16} />
           <span className="hidden sm:inline">Вийти</span>
@@ -74,9 +74,8 @@ export default function Profile() {
       <div className="flex items-center gap-6 border-b border-border mb-8">
         <button
           onClick={() => handleTabChange('bookmarks')}
-          className={`pb-3 text-sm font-medium transition-colors relative flex items-center gap-2 ${
-            activeTab === 'bookmarks' ? 'text-fg' : 'text-muted hover:text-fg'
-          }`}
+          className={`pb-3 text-sm font-medium transition-colors relative flex items-center gap-2 ${activeTab === 'bookmarks' ? 'text-fg cursor-default' : 'text-muted hover:text-fg cursor-pointer'
+            }`}
         >
           <Bookmark size={16} />
           Закладки
@@ -87,9 +86,8 @@ export default function Profile() {
 
         <button
           onClick={() => handleTabChange('settings')}
-          className={`pb-3 text-sm font-medium transition-colors relative flex items-center gap-2 ${
-            activeTab === 'settings' ? 'text-fg' : 'text-muted hover:text-fg'
-          }`}
+          className={`pb-3 text-sm font-medium transition-colors relative flex items-center gap-2 ${activeTab === 'settings' ? 'text-fg cursor-default' : 'text-muted hover:text-fg cursor-pointer'
+            }`}
         >
           <Settings size={16} />
           Налаштування
@@ -111,7 +109,7 @@ export default function Profile() {
                 ))}
               </div>
             ) : (
-              <div className="text-center py-20 border border-dashed border-border rounded-xl">
+              <div className="text-center py-20 border border-dashed border-border rounded-xl select-none">
                 <Bookmark size={32} className="mx-auto text-muted mb-3 opacity-50" />
                 <p className="text-fg font-medium mb-1">Ще немає збережених статей</p>
                 <p className="text-sm text-muted">Новини, які ви додасте в закладки, з'являться тут.</p>

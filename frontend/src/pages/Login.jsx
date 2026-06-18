@@ -83,7 +83,7 @@ export default function Login() {
 
       <Link
         to="/"
-        className="absolute top-6 left-6 z-10"
+        className="cursor-pointer absolute top-6 left-6 z-10"
       >
         <img
           src={logoSrc}
@@ -118,6 +118,7 @@ export default function Login() {
               value={formData.username}
               onChange={handleChange}
               autoFocus={!isLoginMode}
+              className="cursor-text"
             />
           )}
 
@@ -129,6 +130,7 @@ export default function Login() {
             value={formData.email}
             onChange={handleChange}
             autoFocus={isLoginMode}
+            className="cursor-text"
           />
 
           <div className="relative group">
@@ -141,12 +143,12 @@ export default function Login() {
               placeholder="Пароль"
               value={formData.password}
               onChange={handleChange}
-              className="w-full pl-10 pr-12 py-2.5 bg-fg/5 border border-border rounded-xl text-fg placeholder:text-muted focus:outline-none focus:border-industrial-accent focus:ring-1 focus:ring-industrial-accent transition-all"
+              className="w-full pl-10 pr-12 py-2.5 bg-fg/5 border border-border rounded-xl text-fg placeholder:text-muted focus:outline-none focus:border-industrial-accent focus:ring-1 focus:ring-industrial-accent transition-all cursor-text"
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute inset-y-0 right-0 pr-3 flex items-center text-muted hover:text-fg transition-colors"
+              className="cursor-pointer absolute inset-y-0 right-0 pr-3 flex items-center text-muted hover:text-fg transition-colors"
             >
               {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
             </button>
@@ -163,12 +165,12 @@ export default function Login() {
                 placeholder="Підтвердіть пароль"
                 value={formData.confirmPassword}
                 onChange={handleChange}
-                className="w-full pl-10 pr-12 py-2.5 bg-fg/5 border border-border rounded-xl text-fg placeholder:text-muted focus:outline-none focus:border-industrial-accent focus:ring-1 focus:ring-industrial-accent transition-all"
+                className="w-full pl-10 pr-12 py-2.5 bg-fg/5 border border-border rounded-xl text-fg placeholder:text-muted focus:outline-none focus:border-industrial-accent focus:ring-1 focus:ring-industrial-accent transition-all cursor-text"
               />
               <button
                 type="button"
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                className="absolute inset-y-0 right-0 pr-3 flex items-center text-muted hover:text-fg transition-colors"
+                className="cursor-pointer absolute inset-y-0 right-0 pr-3 flex items-center text-muted hover:text-fg transition-colors"
               >
                 {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
               </button>
@@ -178,7 +180,7 @@ export default function Login() {
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full py-2.5 px-4 mt-2 bg-fg text-bg font-medium rounded-xl hover:opacity-90 active:scale-[0.98] transition-all disabled:opacity-50 flex items-center justify-center gap-2"
+            className="cursor-pointer disabled:cursor-not-allowed w-full py-2.5 px-4 mt-2 bg-fg text-bg font-medium rounded-xl hover:opacity-90 active:scale-[0.98] transition-all disabled:opacity-50 flex items-center justify-center gap-2"
           >
             {isLoading ? (
               <Loader2 size={18} className="animate-spin" />
@@ -192,7 +194,7 @@ export default function Login() {
           {isLoginMode ? "Немає акаунту? " : "Вже є акаунт? "}
           <Link
             to={isLoginMode ? '/register' : '/login'}
-            className="font-medium text-fg hover:text-industrial-accent transition-colors underline-offset-4 hover:underline"
+            className="cursor-pointer font-medium text-fg hover:text-industrial-accent transition-colors underline-offset-4 hover:underline"
           >
             {isLoginMode ? 'Реєстрація' : 'Вхід'}
           </Link>

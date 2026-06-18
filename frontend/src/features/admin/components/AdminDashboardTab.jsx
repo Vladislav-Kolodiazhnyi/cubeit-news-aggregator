@@ -44,7 +44,7 @@ export default function AdminDashboardTab({ isAdmin }) {
         <button
           onClick={handleStartParsing}
           disabled={isParsing}
-          className="px-4 py-2 bg-fg text-bg rounded-xl font-medium text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-all disabled:opacity-50 shadow-sm"
+          className="cursor-pointer disabled:cursor-not-allowed px-4 py-2 bg-fg text-bg rounded-xl font-medium text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-all disabled:opacity-50 shadow-sm"
         >
           <RefreshCw size={16} className={isParsing ? 'animate-spin' : ''} />
           {isParsing ? 'Парсинг...' : 'Запустити скрапер'}

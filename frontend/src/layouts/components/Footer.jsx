@@ -69,7 +69,7 @@ export default function Footer() {
 
             <button
               onClick={scrollToTop}
-              className="p-2.5 text-muted hover:text-fg bg-fg/5 hover:bg-fg/10 border border-border rounded-xl transition-all active:scale-95 group"
+              className="cursor-pointer p-2.5 text-muted hover:text-fg bg-fg/5 hover:bg-fg/10 border border-border rounded-xl transition-all active:scale-95 group"
               aria-label="Вгору"
               title="Вгору"
             >

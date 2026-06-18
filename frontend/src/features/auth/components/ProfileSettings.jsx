@@ -89,7 +89,7 @@ export default function ProfileSettings({ user }) {
             type="text"
             value={usernameInput}
             onChange={(e) => setUsernameInput(e.target.value)}
-            className="w-full px-3 py-2 bg-fg/5 border border-border rounded-lg text-fg focus:outline-none focus:border-industrial-accent focus:ring-1 focus:ring-industrial-accent transition-all"
+            className="w-full px-3 py-2 bg-fg/5 border border-border rounded-lg text-fg focus:outline-none focus:border-industrial-accent focus:ring-1 focus:ring-industrial-accent transition-all cursor-text"
           />
         </div>
 
@@ -105,8 +105,8 @@ export default function ProfileSettings({ user }) {
 
         {notification && (
           <div className={`p-3 text-sm rounded-lg border animate-in fade-in slide-in-from-top-2 ${notification.type === 'success'
-            ? 'bg-green-500/10 border-green-500/20 text-green-500'
-            : 'bg-red-500/10 border-red-500/20 text-red-500'
+              ? 'bg-green-500/10 border-green-500/20 text-green-500'
+              : 'bg-red-500/10 border-red-500/20 text-red-500'
             }`}>
             {notification.text}
           </div>
@@ -115,7 +115,7 @@ export default function ProfileSettings({ user }) {
         <button
           onClick={handleSaveProfile}
           disabled={isUpdating || (!selectedFile && usernameInput === user?.username)}
-          className="mt-4 px-4 py-2 bg-fg text-bg text-sm font-medium rounded-lg hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+          className="cursor-pointer disabled:cursor-not-allowed mt-4 px-4 py-2 bg-fg text-bg text-sm font-medium rounded-lg hover:opacity-90 transition-opacity disabled:opacity-50 flex items-center gap-2"
         >
           {isUpdating && <Loader2 size={16} className="animate-spin" />}
           Зберегти зміни

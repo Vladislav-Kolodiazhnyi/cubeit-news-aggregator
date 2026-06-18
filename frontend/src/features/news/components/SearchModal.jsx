@@ -100,13 +100,13 @@ export default function SearchModal({ isOpen, onClose }) {
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Пошук новин за заголовком..."
-            className="flex-1 bg-transparent border-none px-4 py-2 text-fg focus:outline-none placeholder:text-muted"
+            className="flex-1 bg-transparent border-none px-4 py-2 text-fg focus:outline-none placeholder:text-muted cursor-text"
           />
           {isLoading && <Loader2 size={18} className="animate-spin text-muted shrink-0" />}
 
           <button
             onClick={onClose}
-            className="ml-2 p-1.5 text-muted hover:text-fg hover:bg-fg/10 rounded-lg transition-colors text-xs font-mono flex items-center gap-1"
+            className="cursor-pointer ml-2 p-1.5 text-muted hover:text-fg hover:bg-fg/10 rounded-lg transition-colors text-xs font-mono flex items-center gap-1"
           >
             ESC
           </button>
@@ -135,9 +135,9 @@ export default function SearchModal({ isOpen, onClose }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={onClose}
-                className={`block p-3 rounded-xl transition-all group ${isSelected
-                  ? 'bg-fg/10 ring-1 ring-industrial-accent'
-                  : 'hover:bg-fg/5'
+                className={`cursor-pointer block p-3 rounded-xl transition-all group ${isSelected
+                    ? 'bg-fg/10 ring-1 ring-industrial-accent'
+                    : 'hover:bg-fg/5'
                   }`}
                 onMouseEnter={() => setSelectedIndex(index)}
               >
@@ -163,8 +163,8 @@ export default function SearchModal({ isOpen, onClose }) {
                   <ArrowRight
                     size={16}
                     className={`shrink-0 mt-1 transition-all duration-200 ${isSelected
-                      ? 'text-industrial-accent opacity-100 translate-x-0'
-                      : 'text-muted opacity-0 -translate-x-2'
+                        ? 'text-industrial-accent opacity-100 translate-x-0'
+                        : 'text-muted opacity-0 -translate-x-2'
                       }`}
                   />
                 </div>
@@ -173,7 +173,7 @@ export default function SearchModal({ isOpen, onClose }) {
           })}
         </div>
 
-        <div className="px-4 py-2 bg-fg/[0.02] border-t border-border flex items-center justify-between text-xs text-muted">
+        <div className="px-4 py-2 bg-fg/[0.02] border-t border-border flex items-center justify-between text-xs text-muted select-none">
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1">
               <kbd className="px-1.5 py-0.5 bg-fg/10 border border-border rounded font-mono text-[10px]">↑</kbd>

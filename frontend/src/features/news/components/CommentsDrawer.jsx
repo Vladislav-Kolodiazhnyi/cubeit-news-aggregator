@@ -93,7 +93,7 @@ export default function CommentsDrawer({ isOpen, onClose, newsId, articleTitle, 
   return (
     <div className="fixed inset-0 z-[100] flex justify-end">
       <div
-        className="absolute inset-0 bg-bg/50 backdrop-blur-sm transition-opacity"
+        className="absolute inset-0 bg-bg/50 backdrop-blur-sm transition-opacity cursor-pointer"
         onClick={() => !commentToDelete && onClose()}
       />
 
@@ -107,7 +107,7 @@ export default function CommentsDrawer({ isOpen, onClose, newsId, articleTitle, 
               {comments.length}
             </span>
           </div>
-          <button onClick={onClose} className="p-1 text-muted hover:text-fg rounded-md transition-colors">
+          <button onClick={onClose} className="cursor-pointer p-1 text-muted hover:text-fg rounded-md transition-colors">
             <X size={20} />
           </button>
         </div>
@@ -152,7 +152,7 @@ export default function CommentsDrawer({ isOpen, onClose, newsId, articleTitle, 
                       {(isOwner || isAdmin) && (
                         <button
                           onClick={() => setCommentToDelete(comment.id || comment._id)}
-                          className="opacity-0 group-hover:opacity-100 p-1 text-muted hover:text-red-500 transition-all"
+                          className="cursor-pointer opacity-0 group-hover:opacity-100 p-1 text-muted hover:text-red-500 transition-all"
                           title="Видалити коментар"
                         >
                           <Trash2 size={14} />
@@ -176,13 +176,13 @@ export default function CommentsDrawer({ isOpen, onClose, newsId, articleTitle, 
                 value={newComment}
                 onChange={(e) => setNewComment(e.target.value)}
                 placeholder="Напишіть коментар..."
-                className="flex-1 min-h-[40px] max-h-[120px] bg-fg/5 border border-border rounded-xl px-3 py-2 text-sm text-fg placeholder:text-muted focus:outline-none focus:border-industrial-accent resize-y"
+                className="flex-1 min-h-[40px] max-h-[120px] bg-fg/5 border border-border rounded-xl px-3 py-2 text-sm text-fg placeholder:text-muted focus:outline-none focus:border-industrial-accent resize-y cursor-text"
                 rows="1"
               />
               <button
                 type="submit"
                 disabled={isSubmitting || !newComment.trim()}
-                className="p-2.5 bg-fg text-bg rounded-xl hover:opacity-90 disabled:opacity-50 transition-opacity shrink-0 mb-0.5"
+                className="cursor-pointer disabled:cursor-not-allowed p-2.5 bg-fg text-bg rounded-xl hover:opacity-90 disabled:opacity-50 transition-opacity shrink-0 mb-0.5"
               >
                 {isSubmitting ? <Loader2 size={18} className="animate-spin" /> : <Send size={18} />}
               </button>
@@ -210,14 +210,14 @@ export default function CommentsDrawer({ isOpen, onClose, newsId, articleTitle, 
                 <button
                   onClick={() => setCommentToDelete(null)}
                   disabled={isDeleting}
-                  className="flex-1 py-3 text-sm font-medium text-fg hover:bg-fg/5 transition-colors border-r border-border disabled:opacity-50"
+                  className="cursor-pointer disabled:cursor-not-allowed flex-1 py-3 text-sm font-medium text-fg hover:bg-fg/5 transition-colors border-r border-border disabled:opacity-50"
                 >
                   Скасувати
                 </button>
                 <button
                   onClick={executeDelete}
                   disabled={isDeleting}
-                  className="flex-1 py-3 text-sm font-medium text-red-500 hover:bg-red-500/10 transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
+                  className="cursor-pointer disabled:cursor-not-allowed flex-1 py-3 text-sm font-medium text-red-500 hover:bg-red-500/10 transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
                 >
                   {isDeleting ? <Loader2 size={16} className="animate-spin" /> : 'Видалити'}
                 </button>

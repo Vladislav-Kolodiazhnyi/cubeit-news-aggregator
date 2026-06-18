@@ -39,3 +39,8 @@
     transition: background-color 0.3s ease, color 0.3s ease;
   }
 }
+
+*, *::before, *::after {
+  transition-property: background-color, border-color, text-color, fill, stroke;
+  transition-duration: 300ms;
+}

@@ -9,7 +9,7 @@ import Hero from '../components/Hero';
 
 export default function Home() {
   const [searchParams, setSearchParams] = useSearchParams();
-  
+
   const newsSectionRef = useRef(null);
 
   const activeCategorySlug = searchParams.get('category');
@@ -59,11 +59,11 @@ export default function Home() {
 
   return (
     <div className="w-full animate-in fade-in duration-500">
-      
+
       <Hero scrollToNewsRef={newsSectionRef} />
 
-      <div 
-        ref={newsSectionRef} 
+      <div
+        ref={newsSectionRef}
         className="max-w-5xl mx-auto px-4 sm:px-6 py-16 scroll-mt-6"
       >
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-border">
@@ -88,26 +88,31 @@ export default function Home() {
         <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-6 scrollbar-hide">
           <button
             onClick={() => handleCategoryClick(null)}
+            disabled={isLoading}
             className={`px-4 py-1.5 rounded-full text-sm font-medium whitespace-nowrap transition-colors border ${!activeCategorySlug
-              ? 'bg-fg text-bg border-fg'
-              : 'bg-transparent text-muted border-border hover:border-fg hover:text-fg'
+                ? 'bg-fg text-bg border-fg cursor-default'
+                : 'bg-transparent text-muted border-border hover:border-fg hover:text-fg cursor-pointer'
               }`}
           >
             Всі новини
           </button>
 
-          {categories.map((cat) => (
-            <button
-              key={cat._id || cat.id}
-              onClick={() => handleCategoryClick(cat.slug)}
-              className={`px-4 py-1.5 rounded-full text-sm font-medium whitespace-nowrap transition-colors border ${activeCategorySlug === cat.slug
-                ? 'bg-fg text-bg border-fg'
-                : 'bg-transparent text-muted border-border hover:border-fg hover:text-fg'
-                }`}
-            >
-              {cat.name}
-            </button>
-          ))}
+          {categories.map((cat) => {
+            const isCurrentCategory = activeCategorySlug === cat.slug;
+            return (
+              <button
+                key={cat._id || cat.id}
+                onClick={() => handleCategoryClick(cat.slug)}
+                disabled={isLoading}
+                className={`px-4 py-1.5 rounded-full text-sm font-medium whitespace-nowrap transition-colors border ${isCurrentCategory
+                    ? 'bg-fg text-bg border-fg cursor-default'
+                    : 'bg-transparent text-muted border-border hover:border-fg hover:text-fg cursor-pointer'
+                  }`}
+              >
+                {cat.name}
+              </button>
+            );
+          })}
         </div>
 
         {isError && !isLoading && (
@@ -142,7 +147,7 @@ export default function Home() {
                   <p className="text-muted mb-2">Не знайдено новин за вибраними фільтрами.</p>
                   <button
                     onClick={() => setSearchParams({})}
-                    className="text-sm text-industrial-accent hover:underline mt-2"
+                    className="cursor-pointer text-sm text-industrial-accent hover:underline mt-2"
                   >
                     Скинути всі фільтри
                   </button>
@@ -155,7 +160,7 @@ export default function Home() {
                 <button
                   onClick={() => fetchNextPage()}
                   disabled={isFetchingNextPage}
-                  className="px-6 py-2.5 bg-fg/5 hover:bg-fg/10 border border-border rounded-xl text-sm font-medium transition-colors flex items-center gap-2 disabled:opacity-50"
+                  className="cursor-pointer disabled:cursor-not-allowed px-6 py-2.5 bg-fg/5 hover:bg-fg/10 border border-border rounded-xl text-sm font-medium transition-colors flex items-center gap-2 disabled:opacity-50"
                 >
                   {isFetchingNextPage ? (
                     <>
